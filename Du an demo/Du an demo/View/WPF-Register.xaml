@@ -1,0 +1,300 @@
+﻿<Window x:Class="Du_an_demo.View.WPF_Register"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Du_an_demo.View"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="WPF_Register" Height="550" Width="800">
+    <Border CornerRadius="12" Margin="0,0,0,10">
+
+        <Border.Background>
+            <ImageBrush ImageSource="/img/mo-hinh-hoc-tap-ket-hop-blended-learning-3.jpg" />
+        </Border.Background>
+
+        <Border CornerRadius="12"
+             Opacity="0.6"
+         BorderThickness="5">
+
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0"/>
+                    <GradientStop Color="#5822C9" Offset="0.75"/>
+                    <GradientStop Color="#8A16C1" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#AD9B92" Offset="0"/>
+                    <GradientStop Color="#E09169" Offset="0.75"/>
+                    <GradientStop Color="#5822C9" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--<TextBlock login-->
+                    <TextBlock 
+                            Foreground="#D95E18"
+                            FontSize="20"
+                            FontFamily="Montserrat"
+                            Grid.Column="0"
+                            VerticalAlignment="Center"
+                            Margin="10 0 0 0"
+                            FontWeight="Bold"/>
+                    <!--<TextBlock login-->
+
+                    <!--btn minimize-->
+                    <Button x:Name="btnMinimize"
+                         BorderThickness="0"
+                         Content="-"
+                         Foreground="White"
+                         FontSize="16"
+                         FontFamily="Montserrat"
+                         Cursor="Hand"
+                         Grid.Column="1"
+                         Click="btnMinimize_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#24A1EA"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#24A1EA"/>
+                                    </Trigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                      CornerRadius="9"
+                                     Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <!--btn minimize-->
+
+                    <!--btn close-->
+                    <Button x:Name="btnClose"
+                         BorderThickness="0"
+                         Content="X"
+                         Foreground="White"
+                         FontSize="16"
+                         FontFamily="Montserrat"
+                         Cursor="Hand"
+                         Grid.Column="2"
+                         Click="btnClose_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Red"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#24A1EA"/>
+                                    </Trigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                 CornerRadius="9"
+                Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <!--btn close-->
+                    
+                    <!--btn return-->
+                    <Button x:Name="btnReturn"
+                        BorderThickness="0"
+                        Content=""
+                        Foreground="White"
+                        FontSize="16"
+                        FontFamily="Montserrat"
+                        Cursor="Hand"
+                        Click="btnReturn_Click" Margin="715,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#AD9B92"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#24A1EA"/>
+                                    </Trigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Width="18" Height="18"
+                                    CornerRadius="9"
+                                    Background="{TemplateBinding Background}">
+                                    <materialDesign:PackIcon Kind="KeyboardBackspace"
+                                         Width="10"
+                                         Height="20"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"
+                                         Foreground="White"/>
+
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <!--btn return-->
+                    
+                
+                    <!--IMG background-->
+                </Grid>
+                <StackPanel Width="250" 
+                         Grid.Row="2"
+                         Orientation="Vertical"
+                         Margin="0,35,0,0">
+                    <Image Source="/img/Colorful_Modern_Infinity_Technology_Free_Logo__1_-removebg-preview-removebg-preview.png"
+                        Opacity="1"
+                         RenderOptions.BitmapScalingMode="Fant"
+                        Width="150" Height="142"/>
+                    <TextBlock Text="FPT Code"
+                            Foreground="#F8F8FC"
+                            FontSize="25"
+                            FontWeight="Medium"
+                            FontFamily="Montserrat"
+                            HorizontalAlignment="Center" Height="32">
+                    </TextBlock>
+                    <!--IMG background-->
+
+
+                    <!-- txb UserName -->
+                    <TextBox 
+                     x:Name="txbUserNameRegister"
+                     materialDesign:HintAssist.Hint="UserName" 
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                     FontWeight="Bold" 
+                     Height="40" />
+                    <!-- txt UserName -->
+
+
+                    <!-- txt Password -->
+                    <Grid Margin="0,10,0,0" Height="38">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28*"/>
+                            <ColumnDefinition Width="97*"/>
+                        </Grid.ColumnDefinitions>
+                        <!-- Password hidden -->
+
+                        <PasswordBox x:Name="txbPasswordBoxRegister"
+                                  materialDesign:HintAssist.Hint="Password"
+                                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                                  FontWeight="Bold"
+                                  Height="38"
+                                  VerticalContentAlignment="Center"
+                                  PasswordChanged="pbPassword_PasswordChanged"
+                                  Visibility="Visible" Grid.ColumnSpan="2" />
+
+
+                        <!-- Password visible -->
+                        <TextBox x:Name="tbPasswordVisible"
+                                  Text="{Binding ElementName=pbPassword, Path=Password, Mode=TwoWay}"
+                                  materialDesign:HintAssist.Hint="PassWord"
+                                  FontWeight="Bold"
+                                  Padding="5,0,35,0"
+                                  Height="38"
+                                  VerticalContentAlignment="Center"
+                                  Visibility="Collapsed" Grid.ColumnSpan="2" />
+
+                        <!-- Eye icon -->
+                        <ToggleButton x:Name="btnTogglePassword"
+                                  Width="30"
+                                  Height="30"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Left"
+                                  Margin="159,0,0,0"
+                                  Checked="btnTogglePassword_Checked"
+                                  Unchecked="btnTogglePassword_Unchecked" Grid.Column="1">
+                            <materialDesign:PackIcon x:Name="eyeIcon" Kind="EyeOff" Width="20" Height="20" />
+                        </ToggleButton>
+                    </Grid>
+
+                    <!-- txb Password -->
+
+                    <!-- Confirm Password -->
+                    <Grid Margin="0,10,0,0" Height="38">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Hidden PasswordBox -->
+                        <PasswordBox x:Name="txbConfirmPasswordRegister"
+                                  materialDesign:HintAssist.Hint="Confirm Password"
+                                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                                  FontWeight="Bold"
+                                  VerticalContentAlignment="Center"
+                                  PasswordChanged="txbConfirmPassword_PasswordChanged"
+                                  Visibility="Visible" Grid.ColumnSpan="2"/>
+
+                        <!-- Visible TextBox -->
+                        <TextBox x:Name="txbConfirmPasswordVisible"
+                                 Text="{Binding ElementName=txbConfirmPassword, Path=Password, Mode=TwoWay}"
+                                 materialDesign:HintAssist.Hint="Confirm Password"
+                                 FontWeight="Bold"
+                                 Padding="5,0,35,0"
+                                 VerticalContentAlignment="Center"
+                                 Visibility="Collapsed" Grid.ColumnSpan="2"/>
+
+                        <!-- Toggle Button -->
+                        <ToggleButton x:Name="btnToggleConfirmPassword"
+                                 Width="30"
+                                 Height="30"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Right"
+                                 Margin="0,0,5,0"
+                                 Checked="btnToggleConfirmPassword_Checked"
+                                 Unchecked="btnToggleConfirmPassword_Unchecked"
+                                 Grid.Column="1">
+                            <materialDesign:PackIcon x:Name="eyeIconConfirm" Kind="EyeOff" Width="20" Height="20" />
+                        </ToggleButton>
+                    </Grid>
+
+
+                    <!-- Thêm margin để tạo khoảng cách giữa password và nút login -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0" />
+                </StackPanel>
+                <Button 
+                    x:Name="btnSignUp"
+                    Click="btnSignUp_Click"
+                    Content="Sign Up"
+                    Foreground="White"
+                    Background="#AEEA00"                    
+                    FontWeight="Bold"
+                    Margin="351,368,351,100" Grid.Row="1"/>
+            </Grid>
+        </Border>
+    </Border>
+    <!--Boder-->
+</Window>
