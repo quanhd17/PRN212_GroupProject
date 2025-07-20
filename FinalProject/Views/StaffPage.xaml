@@ -27,10 +27,10 @@
             <StackPanel>
                 <!-- Quick Actions -->
                 <WrapPanel HorizontalAlignment="Center">
-                    <Button Content="Home" 
+                    <Button Content="Dashboard" 
                             Style="{DynamicResource MaterialDesignRaisedButton}"
                             Margin="8,0"
-                            Click="ViewOrders_Click"/>
+                            Click="Home_Click"/>
                     <Button Content="Orders"
                             Style="{DynamicResource MaterialDesignRaisedButton}"
                             Margin="8,0"

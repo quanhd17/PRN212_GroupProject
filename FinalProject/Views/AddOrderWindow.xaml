@@ -1,0 +1,100 @@
+<Window x:Class="FinalProject.Views.AddOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewModels="clr-namespace:FinalProject.ViewModels"
+        mc:Ignorable="d"
+        Title="Add Order" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.DataContext>
+        <viewModels:AddOrderViewModel/>
+    </Window.DataContext>
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- Customer Name Input -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,8">
+            <TextBlock Text="Customer Name:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+            <TextBox Text="{Binding CustomerFirstName, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="0,0,16,0"/>
+            <ComboBox ItemsSource="{Binding TableList}"
+                      SelectedItem="{Binding SelectedTable, Mode=TwoWay}"
+                      DisplayMemberPath="TableName"
+                      materialDesign:HintAssist.Hint="Select Table"
+                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                      Width="200" Margin="0,0,8,0"/>
+            <ComboBox ItemsSource="{Binding StaffList}"
+                      SelectedItem="{Binding SelectedStaff, Mode=TwoWay}"
+                      DisplayMemberPath="FullName"
+                      materialDesign:HintAssist.Hint="Select Staff"
+                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                      Width="200" Margin="0,0,8,0"/>
+        </StackPanel>
+        <!-- Filter and Item Selection -->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,8">
+            <ComboBox ItemsSource="{Binding Categories}"
+                      SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
+                      DisplayMemberPath="CategoryName"
+                      materialDesign:HintAssist.Hint="Filter by Category"
+                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                      Width="200" Margin="0,0,8,0"/>
+            <ComboBox ItemsSource="{Binding FilteredItems}"
+                      SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}"
+                      DisplayMemberPath="ItemName"
+                      materialDesign:HintAssist.Hint="Select Item"
+                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                      Width="200" Margin="0,0,8,0"/>
+            <TextBox Text="{Binding ItemQuantity, UpdateSourceTrigger=PropertyChanged}"
+                     materialDesign:HintAssist.Hint="Quantity"
+                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                     Width="80" Margin="0,0,8,0"/>
+            <Button Content="Add Item" Command="{Binding AddItemCommand}"
+                    Style="{DynamicResource MaterialDesignRaisedButton}"/>
+        </StackPanel>
+        <!-- Order Items List -->
+        <DataGrid Grid.Row="2"
+                  ItemsSource="{Binding OrderItems}"
+                  AutoGenerateColumns="False"
+                  Margin="0,0,0,8"
+                  IsReadOnly="True"
+                  Style="{DynamicResource MaterialDesignDataGrid}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Item" Binding="{Binding Item.ItemName}" Width="*"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding ItemPrice}" Width="*"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*"/>
+                <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="*"/>
+                <DataGridTemplateColumn Header="Remove" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Remove" Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Style="{DynamicResource MaterialDesignOutlinedButton}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!-- Order Summary and Actions -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+            <TextBlock Text="Total: " FontWeight="Bold" Margin="0,0,8,0"/>
+            <TextBlock Text="{Binding TotalAmount}" Margin="0,0,16,0"/>
+            <TextBlock Text="Discount (%): " FontWeight="Bold" Margin="0,0,8,0"/>
+            <TextBox Text="{Binding Discount, UpdateSourceTrigger=PropertyChanged}"
+                     Width="60" Margin="0,0,16,0"/>
+            <TextBlock Text="Final: " FontWeight="Bold" Margin="0,0,8,0"/>
+            <TextBlock Text="{Binding FinalAmount}" Margin="0,0,16,0"/>
+            <Button Content="Save Order" Click="Save_Click" Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,0,8,0"/>
+            <Button Content="Cancel" Click="Cancel_Click" Style="{DynamicResource MaterialDesignOutlinedButton}"/>
+        </StackPanel>
+    </Grid>
+</Window> 
