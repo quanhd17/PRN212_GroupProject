@@ -27,12 +27,12 @@
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
                 <Image Source="pack://application:,,,/FinalProject;component/Images/logo.png" Width="255" Height="235" Margin="0,0,0,24"/>
                 <TextBlock Text="Restaurant Management System"
-                           FontSize="32"
+                           FontSize="27"
                            FontWeight="Bold"
                            HorizontalAlignment="Center"
                            TextWrapping="Wrap"
-                           Margin="0,0,0,12"/>
-                <TextBlock Text="Welcome to our comprehensive restaurant management solution"
+                           Margin="0,0,0,12" Width="401"/>
+                <TextBlock Text="Welcome to our restaurant management"
                            Style="{DynamicResource MaterialDesignBody1TextBlock}"
                            HorizontalAlignment="Center"
                            TextWrapping="Wrap"
