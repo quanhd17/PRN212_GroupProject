@@ -4,11 +4,55 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FinalProject.Views"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="StaffPage">
+      d:DesignHeight="800" d:DesignWidth="1200"
+      Title="StaffPage"
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      FontFamily="{DynamicResource MaterialDesignFont}">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <materialDesign:Card Grid.Row="0" Margin="5" Padding="7">
+            <StackPanel>
+                <!-- Quick Actions -->
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Content="Home" 
+                            Style="{DynamicResource MaterialDesignRaisedButton}"
+                            Margin="8,0"
+                            Click="ViewOrders_Click"/>
+                    <Button Content="Orders"
+                            Style="{DynamicResource MaterialDesignRaisedButton}"
+                            Margin="8,0"
+                            Click="Orders_Click"/>
+                    <Button Content="Tables" 
+                            Style="{DynamicResource MaterialDesignRaisedButton}"
+                            Margin="8,0"
+                            Click="Tables_Click"/>
+                    <Button Content="Categories"
+                            Style="{DynamicResource MaterialDesignRaisedButton}"
+                            Margin="8,0"
+                            Click="ManageCategories_Click"/>
+                    <Button Content="Menu"
+                            Style="{DynamicResource MaterialDesignRaisedButton}"
+                            Margin="8,0"
+                            Click="ManageMenu_Click"/>
+                    
+                </WrapPanel>
+            </StackPanel>
+        </materialDesign:Card>
+
+        <!-- Navigation Frame for staff features -->
+        <Frame x:Name="StaffFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Margin="16"/>
     </Grid>
 </Page>

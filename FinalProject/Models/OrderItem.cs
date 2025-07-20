@@ -13,6 +13,8 @@ public partial class OrderItem
 
     public decimal ItemPrice { get; set; }
 
+    public decimal Total => Quantity * ItemPrice;
+
     public virtual MenuItem Item { get; set; } = null!;
 
     public virtual Order Order { get; set; } = null!;

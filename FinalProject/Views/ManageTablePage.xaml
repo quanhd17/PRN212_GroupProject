@@ -1,0 +1,92 @@
+<Page x:Class="FinalProject.Views.ManageTablePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:viewModels="clr-namespace:FinalProject.ViewModels"
+      xmlns:helpers="clr-namespace:FinalProject.ViewModels.Helpers"
+      mc:Ignorable="d"
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="Manage Tables"
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <Page.DataContext>
+        <viewModels:TableManagementViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <helpers:EnumToStringConverter x:Key="EnumToStringConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <materialDesign:Card Grid.Row="0" Margin="16,8,16,0" Padding="12">
+            <TextBlock Text="Table Status Overview" Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+        </materialDesign:Card>
+
+        <!-- Table Form Controls -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="16,8,16,0" VerticalAlignment="Center">
+            <TextBox Text="{Binding TableName, UpdateSourceTrigger=PropertyChanged}" 
+                     materialDesign:HintAssist.Hint="Table Name" 
+                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                     Width="180" Margin="0,0,8,0"/>
+            <ComboBox ItemsSource="{Binding StatusOptions}"
+                      SelectedItem="{Binding Status, Mode=TwoWay}"
+                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                      Width="120" Margin="0,0,8,0"/>
+            <Button Content="Add" Command="{Binding AddTableCommand}" 
+                    Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,0,8,0"/>
+            <Button Content="Edit" Command="{Binding EditTableCommand}" 
+                    Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,0,8,0"/>
+            <Button Content="Save" Command="{Binding SaveTableCommand}" 
+                    Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,0,8,0"/>
+            <Button Content="Delete" Command="{Binding DeleteTableCommand}" 
+                    Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,0,8,0"/>
+            <Button Content="Cancel" Command="{Binding CancelCommand}" 
+                    Style="{DynamicResource MaterialDesignOutlinedButton}"/>
+        </StackPanel>
+
+        <!-- Search and Filter Controls -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="16,8,16,0" VerticalAlignment="Center">
+            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
+                     materialDesign:HintAssist.Hint="Search Tables" 
+                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                     Width="200" Margin="0,0,8,0"/>
+            <ComboBox ItemsSource="{Binding StatusOptions}"
+                      SelectedItem="{Binding StatusFilter, Mode=TwoWay}"
+                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                      Width="120" Margin="0,0,8,0"/>
+            <Button Content="Search" Command="{Binding SearchCommand}" 
+                    Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,0,8,0"/>
+            <Button Content="Filter" Command="{Binding FilterCommand}" 
+                    Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,0,8,0"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="3"
+                  ItemsSource="{Binding TableList}"
+                  SelectedItem="{Binding SelectedTable, Mode=TwoWay}"
+                  AutoGenerateColumns="False"
+                  Margin="16"
+                  IsReadOnly="True"
+                  Style="{DynamicResource MaterialDesignDataGrid}" SelectionChanged="DataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Table ID" Binding="{Binding TableId}" Width="*"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding TableName}" Width="*"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page> 

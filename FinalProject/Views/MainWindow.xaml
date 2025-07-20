@@ -4,18 +4,53 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinalProject"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Restaurant Management System" 
+        Height="800" 
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    
     <Grid>
-        <StackPanel x:Name="adminPanel" Visibility="Collapsed">
-            <!-- Admin -->
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel x:Name="staffPanel" Visibility="Collapsed">
-            <!-- Staff -->
-        </StackPanel>
+        <!-- Header -->
+        <materialDesign:Card Grid.Row="0" Margin="16" Padding="16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock x:Name="lblWelcome" 
+                           Text="Welcome to Restaurant Management System"
+                           Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                           VerticalAlignment="Center"/>
+                
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button x:Name="btnLogout" 
+                            Content="Logout" 
+                            Style="{DynamicResource MaterialDesignOutlinedButton}"
+                            Click="btnLogout_Click"
+                            Margin="8,0"/>
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
 
-        <TextBlock x:Name="lblWelcome" FontSize="18" FontWeight="Bold" Margin="0,20,0,0"/>
-
+        <!-- Navigation Frame -->
+        <Frame x:Name="MainFrame" 
+               Grid.Row="1" 
+               NavigationUIVisibility="Hidden"
+               Margin="5"/>
     </Grid>
 </Window>

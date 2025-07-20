@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalProject.Models.Enum;
+using System;
 using System.Collections.Generic;
 
 namespace FinalProject.Models;
@@ -21,7 +22,7 @@ public partial class Order
 
     public decimal? FinalAmount { get; set; }
 
-    public string? Status { get; set; }
+    public OrderStatusEnum Status { get; set; }
 
     public virtual Account Account { get; set; } = null!;
 
