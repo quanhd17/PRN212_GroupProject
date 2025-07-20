@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FinalProject.Models.Enum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -105,8 +106,7 @@ public partial class Prn212DbContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Status)
-                .HasMaxLength(20)
-                .HasDefaultValue("pending");
+                .HasDefaultValue(OrderStatusEnum.Pending);
             entity.Property(e => e.TotalAmount).HasColumnType("decimal(10, 2)");
 
             entity.HasOne(d => d.Account).WithMany(p => p.Orders)
@@ -156,12 +156,17 @@ public partial class Prn212DbContext : DbContext
             entity.HasKey(e => e.TableId).HasName("PK__Tables__7D5F01EE2CF4D4E4");
 
             entity.Property(e => e.Status)
-                .HasMaxLength(20)
-                .HasDefaultValue("empty");
+                .HasDefaultValue(0);
             entity.Property(e => e.TableName).HasMaxLength(50);
         });
 
-        OnModelCreatingPartial(modelBuilder);
+		modelBuilder.Entity<MenuCategory>()
+	    .HasMany(c => c.SubCategories)
+	    .WithOne(c => c.ParentCategory)
+	    .HasForeignKey(c => c.ParentCategoryId)
+	    .OnDelete(DeleteBehavior.Restrict);
+
+		OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

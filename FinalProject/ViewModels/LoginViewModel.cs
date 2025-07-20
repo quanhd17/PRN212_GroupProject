@@ -13,6 +13,7 @@ namespace FinalProject.ViewModels
     using FinalProject.Models;
     using Microsoft.EntityFrameworkCore;
     using FinalProject.ViewModels.Helpers;
+    using System.Windows.Navigation;
 
     public class LoginViewModel : INotifyPropertyChanged
     {
@@ -35,10 +36,10 @@ namespace FinalProject.ViewModels
 
         public LoginViewModel()
         {
-            LoginCommand = new RelayCommand(Login);
+            LoginCommand = new RelayCommand(param => Login(param));
         }
 
-        private void Login()
+        private void Login(object windowObj)
         {
             using (var db = new Prn212DbContext())
             {
@@ -57,14 +58,12 @@ namespace FinalProject.ViewModels
                     return;
                 }
 
-                switch (user.Role)
+                // Open MainWindow and close Login window
+                var mainWindow = new MainWindow(user);
+                mainWindow.Show();
+                if (windowObj is Window loginWindow)
                 {
-                    case 0:
-                        MessageBox.Show("Hello Admin: " + user.FullName);
-                        break;
-                    case 1:
-                        MessageBox.Show("Hello Staff: " + user.FullName);
-                        break;
+                    loginWindow.Close();
                 }
             }
         }

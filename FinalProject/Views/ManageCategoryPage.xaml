@@ -1,0 +1,161 @@
+<Page x:Class="FinalProject.Views.ManageCategoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:viewModels="clr-namespace:FinalProject.ViewModels"
+      xmlns:helpers="clr-namespace:FinalProject.ViewModels.Helpers"
+      mc:Ignorable="d"
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="Manage Categories"
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <Page.DataContext>
+        <viewModels:CategoryManagementViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <helpers:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header and Actions -->
+        <materialDesign:Card Grid.Row="0" Margin="16" Padding="16">
+            <StackPanel>
+                <TextBlock Text="Category Management"
+                           Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,16"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Search -->
+                    <materialDesign:Card Grid.Column="0" Margin="0,0,8,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon Grid.Column="0" Kind="Magnify" VerticalAlignment="Center" Margin="8,0"/>
+                            <TextBox Grid.Column="1"
+                                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                     materialDesign:HintAssist.Hint="Search category by name..."
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Margin="8"/>
+                            <Button Grid.Column="2"
+                                    Content="Search"
+                                    Command="{Binding SearchCommand}"
+                                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                                    Margin="8,0"/>
+                        </Grid>
+                    </materialDesign:Card>
+                    <!-- Actions -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Button Content="Add Category"
+                                Command="{Binding AddCategoryCommand}"
+                                Style="{DynamicResource MaterialDesignRaisedButton}"
+                                Margin="4,0"/>
+                        <Button Content="Edit Category"
+                                Command="{Binding EditCategoryCommand}"
+                                Style="{DynamicResource MaterialDesignOutlinedButton}"
+                                Margin="4,0"/>
+                        <Button Content="Delete Category"
+                                Command="{Binding DeleteCategoryCommand}"
+                                Style="{DynamicResource MaterialDesignOutlinedButton}"
+                                Margin="4,0"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" Margin="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Category List -->
+            <materialDesign:Card Grid.Column="0" Margin="0,0,8,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Text="Categories"
+                               Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                               Margin="16"/>
+                    <DataGrid Grid.Row="1"
+                              ItemsSource="{Binding CategoryList}"
+                              SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              Style="{DynamicResource MaterialDesignDataGrid}"
+                              Margin="16">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding CategoryId}" Width="60"/>
+                            <DataGridTextColumn Header="Category Name" Binding="{Binding CategoryName}" Width="*"/>
+                            <DataGridTextColumn Header="Parent" Binding="{Binding ParentCategory.CategoryName}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </materialDesign:Card>
+            <!-- Category Details -->
+            <materialDesign:Card Grid.Column="1" Margin="8,0,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Text="Category Details"
+                               Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                               Margin="16"/>
+                    <StackPanel Grid.Row="1" Margin="16" IsEnabled="{Binding IsEditingOrAdding}">
+                        <TextBox Text="{Binding CategoryName, UpdateSourceTrigger=PropertyChanged}"
+                                 materialDesign:HintAssist.Hint="Category Name"
+                                 Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                 Margin="0,8"/>
+                        <ComboBox ItemsSource="{Binding ParentCategoryOptions}"
+                                  SelectedItem="{Binding SelectedParentCategory, Mode=TwoWay}"
+                                  DisplayMemberPath="CategoryName"
+                                  materialDesign:HintAssist.Hint="Parent Category"
+                                  Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                                  Margin="0,8"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="16">
+                        <Button Content="Save"
+                                Command="{Binding SaveCategoryCommand}"
+                                Style="{DynamicResource MaterialDesignRaisedButton}"
+                                Margin="4,0"
+                                Visibility="{Binding IsEditingOrAdding, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Button Content="Cancel"
+                                Command="{Binding CancelCommand}"
+                                Style="{DynamicResource MaterialDesignOutlinedButton}"
+                                Margin="4,0"
+                                Visibility="{Binding IsEditingOrAdding, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</Page> 
