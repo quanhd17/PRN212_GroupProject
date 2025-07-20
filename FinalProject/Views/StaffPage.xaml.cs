@@ -23,6 +23,7 @@ namespace FinalProject.Views
         public StaffPage()
         {
             InitializeComponent();
+            StaffFrame.Navigate(new ManageOrderPage());
         }
 
         private void ViewOrders_Click(object sender, RoutedEventArgs e)
@@ -55,12 +56,17 @@ namespace FinalProject.Views
 
         private void Orders_Click(object sender, RoutedEventArgs e)
         {
-            StaffFrame.Navigate(new OrderListPage());
+            StaffFrame.Navigate(new ManageOrderPage());
         }
 
         private void Tables_Click(object sender, RoutedEventArgs e)
         {
             StaffFrame.Navigate(new ManageTablePage());
+        }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            StaffFrame.Navigate(new StaffStatisticsPage());
         }
     }
 }

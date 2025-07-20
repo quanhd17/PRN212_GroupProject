@@ -1,0 +1,47 @@
+<Page x:Class="FinalProject.Views.StaffStatisticsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:viewModels="clr-namespace:FinalProject.ViewModels"
+      Title="Statistics"
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      FontFamily="{DynamicResource MaterialDesignFont}">
+    <Page.DataContext>
+        <viewModels:StaffStatisticsViewModel/>
+    </Page.DataContext>
+    <Grid>
+        <materialDesign:Card Margin="32" Padding="32">
+            <StackPanel>
+                <TextBlock Text="Statistics" Style="{DynamicResource MaterialDesignHeadline5TextBlock}" HorizontalAlignment="Center" Margin="0,0,0,16"/>
+                <TextBlock Text="Today's Orders:" FontWeight="Bold"/>
+                <TextBlock Text="{Binding TotalOrdersToday}" Margin="0,0,0,8"/>
+                <TextBlock Text="Today's Revenue:" FontWeight="Bold"/>
+                <TextBlock Text="{Binding TotalRevenueToday, StringFormat=C}" Margin="0,0,0,8"/>
+                <TextBlock Text="This Month's Orders:" FontWeight="Bold"/>
+                <TextBlock Text="{Binding TotalOrdersMonth}" Margin="0,0,0,8"/>
+                <TextBlock Text="This Month's Revenue:" FontWeight="Bold"/>
+                <TextBlock Text="{Binding TotalRevenueMonth, StringFormat=C}" Margin="0,0,0,8"/>
+                <TextBlock Text="Most Popular Item Today:" FontWeight="Bold"/>
+                <TextBlock Text="{Binding MostPopularItemToday}" Margin="0,0,0,8"/>
+                <TextBlock Text="Most Popular Item This Month:" FontWeight="Bold"/>
+                <TextBlock Text="{Binding MostPopularItemMonth}" Margin="0,0,0,8"/>
+                <Button Content="Export to Excel" Click="ExportToExcel_Click" Style="{DynamicResource MaterialDesignOutlinedButton}" Margin="0,0,0,8"/>
+                <ScrollViewer Height="300">
+                    <DataGrid ItemsSource="{Binding DailyStats}" AutoGenerateColumns="False" Margin="0,8,0,0" IsReadOnly="True" Style="{DynamicResource MaterialDesignDataGrid}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=d}" Width="*"/>
+                            <DataGridTextColumn Header="Orders" Binding="{Binding Orders}" Width="*"/>
+                            <DataGridTextColumn Header="Revenue" Binding="{Binding Revenue, StringFormat=C}" Width="*"/>
+                            <DataGridTextColumn Header="Most Popular Item" Binding="{Binding MostPopularItem}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+            </StackPanel>
+        </materialDesign:Card>
+    </Grid>
+</Page> 

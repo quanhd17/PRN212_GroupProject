@@ -1,0 +1,54 @@
+<Window x:Class="FinalProject.Views.CheckoutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Checkout" Height="500" Width="500"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- Order Summary -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,8">
+            <TextBlock Text="Order Summary" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" Margin="0,0,0,8"/>
+            <TextBlock Text="Total: " FontWeight="Bold"/>
+            <TextBlock Text="{Binding TotalAmount}" Margin="0,0,0,8"/>
+            <TextBlock Text="Discount: " FontWeight="Bold"/>
+            <TextBlock Text="{Binding Discount}" Margin="0,0,0,8"/>
+            <TextBlock Text="Final: " FontWeight="Bold"/>
+            <TextBlock Text="{Binding FinalAmount}" Margin="0,0,0,8"/>
+        </StackPanel>
+        <!-- Receipt Preview -->
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding OrderItems}"
+                  AutoGenerateColumns="False"
+                  Margin="0,0,0,8"
+                  IsReadOnly="True"
+                  Style="{DynamicResource MaterialDesignDataGrid}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Item" Binding="{Binding Item.ItemName}" Width="*"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding ItemPrice}" Width="*"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*"/>
+                <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!-- Payment and Actions -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+            
+            <Button Content="Confirm" Click="Confirm_Click" Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,0,8,0"/>
+            <Button Content="Cancel" Click="Cancel_Click" Style="{DynamicResource MaterialDesignOutlinedButton}"/>
+        </StackPanel>
+    </Grid>
+</Window> 

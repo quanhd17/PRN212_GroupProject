@@ -55,7 +55,7 @@ namespace FinalProject
             MainFrame.Navigate(adminPage);
         }
 
-        private void NavigateToStaffPage()
+        public void NavigateToStaffPage()
         {
             var staffPage = new StaffPage();
             MainFrame.Navigate(staffPage);
