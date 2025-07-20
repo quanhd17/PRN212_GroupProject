@@ -74,15 +74,15 @@
                 </StackPanel>
                 <!-- Actions -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Content="Add Item"
+                    <Button Content="Add"
                             Command="{Binding AddMenuItemCommand}"
                             Style="{DynamicResource MaterialDesignRaisedButton}"
                             Margin="4,0"/>
-                    <Button Content="Edit Item"
+                    <Button Content="Edit"
                             Command="{Binding EditMenuItemCommand}"
                             Style="{DynamicResource MaterialDesignOutlinedButton}"
                             Margin="4,0"/>
-                    <Button Content="Delete Item"
+                    <Button Content="Delete"
                             Command="{Binding DeleteMenuItemCommand}"
                             Style="{DynamicResource MaterialDesignOutlinedButton}"
                             Margin="4,0"/>

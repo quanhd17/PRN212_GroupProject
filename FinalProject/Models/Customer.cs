@@ -18,4 +18,5 @@ public partial class Customer
     public DateTime? JoinDate { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
 }

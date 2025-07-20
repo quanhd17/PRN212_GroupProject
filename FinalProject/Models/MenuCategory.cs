@@ -15,4 +15,5 @@ public partial class MenuCategory
 	public virtual ICollection<MenuCategory> SubCategories { get; set; } = new List<MenuCategory>();
 
 	public virtual ICollection<MenuItem> MenuItems { get; set; } = new List<MenuItem>();
+
 }
