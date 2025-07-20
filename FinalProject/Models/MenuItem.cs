@@ -21,4 +21,5 @@ public partial class MenuItem
     public virtual MenuCategory Category { get; set; } = null!;
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
 }

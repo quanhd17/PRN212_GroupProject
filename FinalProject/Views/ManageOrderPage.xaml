@@ -29,7 +29,7 @@
         <!-- Header and Actions -->
         <materialDesign:Card Grid.Row="0" Margin="16,8,16,0" Padding="12">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Text="Order Management" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" Margin="0,0,16,0"/>
+                <TextBlock Text="Order Management" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" Margin="0,0,16,0" Height="23"/>
                 <Button Content="Refresh" Click="Refresh_Click" Style="{DynamicResource MaterialDesignOutlinedButton}" Margin="0,0,8,0"/>
                 <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
                          materialDesign:HintAssist.Hint="Search Orders" 

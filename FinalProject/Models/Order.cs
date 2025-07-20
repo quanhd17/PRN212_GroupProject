@@ -31,4 +31,5 @@ public partial class Order
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
     public virtual Table Table { get; set; } = null!;
+
 }
