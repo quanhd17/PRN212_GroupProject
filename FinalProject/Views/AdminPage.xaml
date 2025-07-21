@@ -91,6 +91,10 @@
                                 Command="{Binding StaffManagementViewModel.DeleteStaffCommand}"
                                 Style="{DynamicResource MaterialDesignOutlinedButton}"
                                 Margin="4,0"/>
+                        <Button Content="Export to Excel" 
+                                Command="{Binding ExportExcelCommand}" 
+                                Style="{DynamicResource MaterialDesignOutlinedButton}"
+                                Margin="4,0"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>
